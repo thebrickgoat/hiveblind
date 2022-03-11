@@ -97,7 +97,10 @@ export default function Product({ data: { product, suggestions } }) {
     priceRangeV2.minVariantPrice.currencyCode,
     variant.price
   )
-
+  const comparePrice = formatPrice(
+    priceRangeV2.maxVariantPrice.currencyCode,
+    variant.compareAtPrice
+  )
   const hasVariants = variants.length > 1
   const hasImages = images.length > 0
   const hasMultipleImages = true || images.length > 1
@@ -159,7 +162,7 @@ export default function Product({ data: { product, suggestions } }) {
             <h1 className={header}>{title}</h1>
             <p className={productDescription}>{description}</p>
             <h2 className={priceValue}>
-              <span>{price}</span>
+            <span>{comparePrice}</span> <span>{price}</span>
             </h2>
             <fieldset className={optionsWrapper}>
               {hasVariants &&
@@ -245,6 +248,7 @@ export const query = graphql`
         storefrontId
         title
         price
+        compareAtPrice
         selectedOptions {
           name
           value

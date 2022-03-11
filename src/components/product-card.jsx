@@ -71,6 +71,7 @@ export function ProductCard({ product, eager }) {
           {title}
         </h2>
         <div className={productPrice}>{price}</div>
+        <div> Compare At Price</div>
       </div>
     </Link>
   )
